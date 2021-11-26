@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Account{% endblock title %}
+
+{% block body %}
+
+{% if user.is_authenticated %}
+        <div class="container bg-light mt-4 pt-3 pb-3">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="text-center">
+                        <h2>Profile</h2>
+                        <hr>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item">Name: {{user.username}}</li>
+                        <li class="list-group-item">Email: {{user.email}}</li>
+                        <li class="list-group-item">Date-Joined: {{user.date_joined}}</li>
+                        <li class="list-group-item">Last-Login: {{user.last_login}}</li>                        
+                    </ul>
+                    <hr>
+                    <a class="btn btn-warning mr-1 mt-2" href="{% url 'change_profile' %}">Change Profile</a>
+                </div>
+                <div class="col-lg-8">
+                    <b class="text-secondary">Blogs</b><br>
+                    {% if blog_posts %}
+                    <div class="card bg-white mt-2 mb-5">
+                        <div class="card-body">
+                            <div class="list-group">
+                                {% for post in blog_posts %}
+                                    <a href="{% url 'blog:detail_post' post.slug %}" class="list-group-item list-group-item-action flex-column align-items-start bg-warning text-black">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">{{post.title}}</h5>
+                                            <small>{{ post.date_published }}</small>
+                                        </div>
+                                        <p class="mb-1">{{post.body|safe|truncatechars:120}}</p>
+                                    </a>
+                                    <hr>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                        <p>You Have no Post Create a post <a href="{% url 'blog:create_post' %}">here</a></p>
+                    {% endif %}
+                </div>
+        </div>
+{% endif %}
+
+{% endblock body %}
+

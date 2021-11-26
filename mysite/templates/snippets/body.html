@@ -1,0 +1,29 @@
+<!-- Nav Bar -->
+<nav class="navbar navbar-light bg-warning">
+    {% if request.user.is_authenticated %}
+    <strong><p class="mt-2 mb-1">Hello, {{request.user.username}}</p></strong>
+    {% else %}
+    <strong><p><a class="navbar-brand mt-2 mb-1" href="{% url 'home' %}">My Site</a></p></strong>
+    {% endif %}
+    <!-- Search -->
+    <div class="search-bar mt-2 mb-1">
+        <form action="" method="GET">
+            <input type="text" class="form-control" name="q" id="q" placeholder="Search" value="{{query}}">
+        </form>
+    </div>
+    <!-- <a class="navbar-brand" href="/">My Site</a> -->
+    {% if request.user.is_authenticated %}
+    <form action="" class="form-inline mt-2 mb-1">
+        <a class="btn btn-outline-dark mr-1" href="{% url 'home' %}">Home</a>
+        <a class="btn btn-outline-dark mr-1" href="{% url 'account' %}">Account</a>
+        <a class="btn btn-outline-dark mr-1" href="{% url 'logout' %}">Logout</a>
+    </form>
+    {% else %}
+    <form action="" class="form-inline mt-2 mb-1">
+        <a class="btn btn-outline-dark mr-1" href="{% url 'home' %}">Home</a>
+        <a class="btn btn-outline-dark mr-1" href="{% url 'login' %}">Login</a>
+        <a class="btn btn-outline-dark mr-1" href="{% url 'register' %}">Register</a>
+    </form>
+
+    {% endif %}
+</nav>

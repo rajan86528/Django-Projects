@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+    {% include 'snippets/header.html' %}
+</head>
+<body>
+            
+
+    <style type="text/css">
+        .main{
+            min-height: 100vh;
+            height: 100%;
+        }
+    </style>
+    
+    <!-- Nav-Bar-Include -->
+    {% include 'snippets/body.html' %}
+    <!-- {% include 'snippets/base_css.html' %} -->
+
+    <div class="main">
+        {% block body %}
+        {% endblock body %}
+    </div>
+
+</body>
+{% include 'snippets/footer.html' %}
+</html>

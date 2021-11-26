@@ -1,0 +1,50 @@
+{% if blog_post %}
+<div class="container">
+    <div class="row">
+        <!-- End For Header -->
+        <!-- FOR CARDS -->
+        <!-- For 1st Card -->
+        <div class="col-lg-16 mg-4 mt-3">
+            <div class="card">
+                <div class="card-body">
+					<!-- For Image Link To Details Page -->
+                    <a href="{% url 'blog:detail_post' post.slug %}">
+						<img class="card-img-top" src="{{blog_post.image.url}}">
+					</a>
+					<!-- END -->
+					<!-- Title Link -->
+                    <a href="{% url 'blog:detail_post' post.slug %}">
+						<h3 class="card-title mb-1">{{blog_post.title}}</h3>
+					</a>
+                    <hr>
+					<!-- END -->
+					<!-- Paragraph of 180 word -->
+					<p class="card-text">{{blog_post.body|safe|truncatechars:180}}</p>
+					<!-- end -->
+                    {% if blog_post.author == request.user %}
+                        <a href="{% url 'blog:edit' blog_post.slug %}" class="btn btn-warning">EDIT</a>
+                    {% endif %}
+                    <div class="card-footer text-muted">
+                        {{blog_post.date_published}} by {{blog_post.author}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End CARDS -->
+    </div>
+</div>
+
+{% else %}
+
+<div class="container">
+	<div class="row">
+		<div class="card m-auto">
+			<div class="card-body mt-2 mb-2">
+				<h2 class="card-title">No results</h2>
+				<p class="card-text">There were no results matching the search: "{{query}}"</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endif %}
