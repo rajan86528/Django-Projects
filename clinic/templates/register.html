@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if not request.user.is_authenticated %}
+
+    <div class="container mt-5">
+        <div class="row">
+            <!-- For Header -->
+            <div class="container">
+                <div class="d-flex flex-column">
+                    <p class="m-auto">
+                        <a class="btn btn-warning" href="{% url 'patient_register' %}">Patient</a> or 
+                        <a class="btn btn-warning" href="{% url 'doctor_register' %}">Doctor</a>
+                    </p>
+                </div>
+            </div>
+            <!-- End For Header -->
+        </div>
+    </div>
+{% endif %}
+
+
+{% endblock %}

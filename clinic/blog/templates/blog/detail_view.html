@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Account{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <!-- End For Header -->
+        <!-- FOR CARDS -->
+        <!-- For 1st Card -->
+        <div class="col-lg-46 mg-4">
+            <div class="card">
+                <div class="card-body">
+                    <img class="card-img-top" src="{{blog_post.image.url}}" alt="Blog Image">
+                    <h2 class="card-title">{{blog_post.title}}</h2>
+                    <p class="card-text">{{blog_post.body|safe}}</p>
+                    <div class="card-footer text-muted">
+                        {{blog_post.date_published}} by {{blog_post.author}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End CARDS -->
+    </div>
+</div>
+
+{% endblock %}
+

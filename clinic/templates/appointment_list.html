@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <!-- For Header -->
+        {% if not request.user.is_authenticated %}
+        <div class="col-lg-12">
+            <h1 class="text-center mt-5 mb-5">Welcome To Clinic</h1>
+        </div>
+        <div class="container">
+            <div class="d-flex flex-column">
+                <p class="m-auto">
+                    <a class="btn btn-warning" href="{% url 'register' %}">Register</a> or 
+                    <a class="btn btn-warning" href="{% url 'login' %}">Login</a>
+                </p>
+            </div>
+        </div>
+        <!-- End For Header -->
+        {% else %}
+        <div class="col-lg-12">
+            <h1 class="text-center mt-5 mb-5">Welcome To Clinic</h1>
+        </div>
+        <div class="container bg-light mt-4 pt-3 pb-3">
+                <div class="col-lg-8">
+                    <b class="text-secondary">All Appointment for DR.{{request.user.get_full_name}}</b><br>
+                    {% if user.is_doctor %}
+                    <div class="card bg-white mt-2 mb-5">
+                        <div class="card-body">
+                            <div class="list-group">
+                                {% for apt in appointment %}
+                                <div class="col-rg-10 mg-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5>Name: {{apt.appointment_user.get_full_name}}</h5>
+                                            <h5>Required Speciality: {{apt.required_speciality}}</h5>
+                                            <h5>Date of Appointment: {{apt.date_of_Appointment}}</h5>
+                                            <h5>Start Time of Appointment: {{apt.start_Time_of_Appointment}}</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}
